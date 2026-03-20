@@ -1,2 +1,3 @@
-# pro-health-tracker-v5t3
-Automated issue comment bot repository
+# Pro Health Tracker V5T3
+
+Automated issue comment bot repository.
