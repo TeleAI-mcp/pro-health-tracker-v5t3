@@ -1,0 +1,27 @@
+name: Issue Label Comment Bot
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  comment-on-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on 'completed' label
+        if: github.event.label.name == 'completed'
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "This issue has been resolved. Thank you for your contribution!"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+
+      - name: Comment on 'enhancement' label
+        if: github.event.label.name == 'enhancement'
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --body "Thanks for the enhancement suggestion! We appreciate your input."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
